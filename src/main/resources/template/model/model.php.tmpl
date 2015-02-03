@@ -1,0 +1,69 @@
+<?php
+/**
+ * @copyright 2013
+ * @author Progress44 <dev@progress44.com>
+ * @version 1.0 media model
+ * @todo n/a
+ * @access public
+ */
+ 
+/**
+ * @package Media\
+ * @since 1.0 this was introduced on version 1.0
+ * @uses Database_Query_Handler
+ * @extends Database_Model
+ * @todo 
+ */
+class #{Path}_#{LibName}_Model_#{LibName} extends Database_Model
+{
+    /**
+	 * @property string $table the table to get the data from.
+	 * @api
+	 */
+    protected $table = "#{ModelName}";
+    
+    /**
+	 * @property string $table the table to get the data from.
+	 * @api
+	 */
+    protected $key = "#{ModelKey}";
+
+	 /**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @param null
+	 * @return Media_Model_Media $this returns the instance of this model
+	 * @uses n/a
+	 * @throws n/a
+	 * @since 1.0
+	 */
+	 public function __construct()
+	 {
+	 	 parent::__construct();
+	 	 
+		 return $this;
+	 }
+
+	 /**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return String $s the string containing all joins ready for the query handler object
+	 * @uses n/a
+	 * @throws n/a
+	 * @since 1.0
+	 */
+	 public function relationAnalysis()
+	 {
+	 	$s = "";
+	 	$n = new Database_Query_Handler();
+	 	foreach($this->relations as $key => $value)
+	 	{
+		 	$s .= " LEFT JOIN ".$n->quote($value->getTable())." ON ".$n->quote($this->getTable()).".".$n->quote($key);
+		 	$s .= " = ".$n->quote($value->getTable()).".".$n->quote($value->getKey());
+	 	}
+	 	
+		return $s;
+	 }
+}// [c]
+
+?>

@@ -1,0 +1,63 @@
+<?php
+/**
+ * @copyright 2013
+ * @author Progress44 <dev@progress44.com>
+ * @version 1.0 this is the interface between the Media Package and other libraries
+ * @todo n/a
+ * @access public
+ */
+ 
+/**
+ * @package Server\Email\
+ * @since 1.0 this was introduced on version 1.0
+ * @uses Session_Storage
+ * @extends Core_Controller
+ * @todo 
+ */
+class #{Path}_#{LibName}_Rules_Rules extends Core_Controller
+{   
+	/**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return int $id the id of the inserted media file / null if nothing is inserted
+	 * @uses Media_Helper_Media
+	 * @throws n/a
+	 * @api
+	 * @since 1.0
+	 */
+    public function putRules($args)
+    {
+    	return true;
+    }
+
+    /**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return mixed[] $r the data of a media object
+	 * @uses Media_Helper_Media, Media_Collection_Media
+	 * @throws n/a
+	 * @api
+	 * @since 1.0
+	 */
+    public function getRules($args)
+    {
+    	return true;
+    }
+    
+    /**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return mixed[] $r the data of a media object
+	 * @uses Media_Helper_Media, Media_Collection_Media
+	 * @throws n/a
+	 * @api
+	 * @since 1.0
+	 */
+    public function deleteRules($args)
+    {
+    	return true;
+    }
+
+}// [c] Session
+
+?>

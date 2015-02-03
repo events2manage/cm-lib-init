@@ -1,0 +1,122 @@
+<?php
+/**
+ * @copyright 2013
+ * @author Progress44 <dev@progress44.com>
+ * @version 1.0 this is the interface between the Media Package and other libraries
+ * @todo n/a
+ * @access public
+ */
+ 
+/**
+ * @package #{Path}
+ * @since 1.0 this was introduced on version 1.0
+ * @uses Session_Storage
+ * @extends Core_Controller
+ * @todo 
+ */
+class #{Path}_#{LibName}_Controller extends #{Path}_#{LibName}_#{RulesTemplate}
+{
+    /**
+	 * @property stdObject $instance the instance of the current class
+	 * @api
+	 * @static
+	 */
+    private static $instance;
+    
+    /**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return Session_Controller $instance returns the instance of this class
+	 * @uses n/a
+	 * @throws n/a
+	 * @api
+	 * @since 1.0
+	 */
+    public function __construct()
+    {
+    	if((self::$instance instanceof self))
+    		return self::$instance;
+    	
+        return $this;
+    }// [m] start
+	 
+	/**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return Exception_Exception_XException $instance returns the instance of this class
+	 * @uses n/a
+	 * @throws n/a
+	 * @api
+	 * @static
+	 * @since 1.0
+	 */
+ 	public static function getInstance()
+ 	{
+		if(!(self::$instance instanceof self))
+			self::$instance = new self();
+		 
+		return self::$instance;
+	}
+
+    /**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return int $id the id of the inserted media file / null if nothing is inserted
+	 * @uses Media_Helper_Media
+	 * @throws n/a
+	 * @api
+	 * @since 1.0
+	 */
+    public function putAction($args)
+    {
+    	$r = new stdObject();
+    	return $r;
+    }
+    
+    /**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return mixed[] $r the data of a media object
+	 * @uses Media_Helper_Media, Media_Collection_Media
+	 * @throws n/a
+	 * @api
+	 * @since 1.0
+	 */
+    public function getAction($args)
+    {
+    	if(is_object($args) && !Util_VarUtil::isEmpty(@$args->id))
+    	{
+	    	$mo = new #{Path}_#{LibName}_Model_#{LibName}();
+	    	$mo->load($args->id);
+    	}
+    	else
+    	{
+	    	$mo = new #{Path}_#{LibName}_Collection_#{LibName}();
+	    	$mo->load();
+    	}
+    	
+    	return $mo->properties;
+    }
+    
+    /**
+	 * @version 1.0
+	 * @copyright inherit
+	 * @return mixed[] $r the data of a media object
+	 * @uses Media_Helper_Media, Media_Collection_Media
+	 * @throws n/a
+	 * @api
+	 * @since 1.0
+	 */
+    public function deleteAction($args)
+    {
+    	if($args->id != null)
+    	{
+	    	$mo = new #{Path}_#{LibName}_Model_#{LibName}();
+	    	$mo->delete($args->id);
+	    }
+    	return false;
+    }
+
+}// [c] Session
+
+?>
