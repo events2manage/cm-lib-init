@@ -8,6 +8,19 @@
   <name>library-initializer</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+  	<dependency>
+        <groupId>org.jboss.spec</groupId>
+        <artifactId>jboss-javaee-6.0</artifactId>
+        <version>1.0.0.Final</version>
+        <type>pom</type>
+        <scope>provided</scope>
+        <exclusions>
+          <exclusion>
+            <artifactId>cdi-api</artifactId>
+            <groupId>javax.enterprise</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
