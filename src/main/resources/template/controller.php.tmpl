@@ -86,13 +86,15 @@ class #{Path}_#{LibName}_Controller extends #{Path}_#{LibName}_Rules_Rules
     {
     	if(is_object($args) && !Util_VarUtil::isEmpty(@$args->id))
     	{
-	    	$mo = new #{Path}_#{LibName}_Model_#{LibName}();
-	    	$mo->load($args->id);
+    		#todo:
+	    	#$mo = new #{Path}_#{LibName}_Model_#{ModelName}();
+	    	#$mo->load($args->id);
     	}
     	else
     	{
-	    	$mo = new #{Path}_#{LibName}_Collection_#{LibName}();
-	    	$mo->load();
+    		#todo:
+	    	#$mo = new #{Path}_#{LibName}_Collection_#{ModelName}();
+	    	#$mo->load();
     	}
     	
     	return $mo->properties;
@@ -111,8 +113,9 @@ class #{Path}_#{LibName}_Controller extends #{Path}_#{LibName}_Rules_Rules
     {
     	if($args->id != null)
     	{
-	    	$mo = new #{Path}_#{LibName}_Model_#{LibName}();
-	    	$mo->delete($args->id);
+    		#todo:
+	    	#$mo = new #{Path}_#{LibName}_Model_#{ModelName}();
+	    	#$mo->delete($args->id);
 	    }
     	return false;
     }

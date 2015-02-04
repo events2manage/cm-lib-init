@@ -11,8 +11,9 @@ import javax.xml.bind.Marshaller;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import model.ModelType;
-import model.RootType;
+
+import com.newlinecode.libraryInit.model.ModelType;
+import com.newlinecode.libraryInit.model.RootType;
 
 /**
  * Unit test for simple App.
@@ -48,14 +49,21 @@ public class AppTest
         assertTrue( true );
         
         // parse document
-		RootType r = new RootType("testLibrary");
+		RootType r = new RootType("TestLibrary", "c:\\tmp\\test-project");
 		ModelType m = new ModelType();
 		
-		r.getModels().getModel().add(m);
 		r.getModels().getModel().add(m);
 		m.setForceLeftJoin(true);
 		m.setModelKey("testModelKey");
 		m.setModelName("testModel");
+		m.getTableRelations().add("user");
+		
+		m = new ModelType();
+		
+		r.getModels().getModel().add(m);
+		m.setForceLeftJoin(true);
+		m.setModelKey("testModelKey");
+		m.setModelName("TestModel1");
 		m.getTableRelations().add("user");
 		
 		JAXBContext context = JAXBContext.newInstance(RootType.class);
@@ -64,11 +72,11 @@ public class AppTest
 		System.out.print(xml);
 		System.out.println();
 		
-		PrintWriter out = new PrintWriter("c:\\tmp\\xmlIn");
+		PrintWriter out = new PrintWriter("c:\\tmp\\xmlIn.xml");
 		out.println(xml);
 		out.close();
 		
-		TemplateParser.parse("c:\\tmp\\xmlIn");
+		new TemplateParser().parse("c:\\tmp\\xmlIn.xml");
     }
     
     public static String asString(JAXBContext pContext, Object pObject) throws JAXBException {

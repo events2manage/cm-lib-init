@@ -1,4 +1,4 @@
-package model;
+package com.newlinecode.libraryInit.model;
 
 import java.io.Serializable;
 
@@ -17,7 +17,7 @@ public class RootType implements Serializable {
 
 	public RootType() {
 		controllerName = new String();
-		projectPath = new String("c:/projects/test-project");
+		projectPath = new String("c:\\projects\\test-project");
 		models = new ModelListType();
 	}
 	
@@ -27,7 +27,7 @@ public class RootType implements Serializable {
 	 */
 	public RootType(String libraryName) {
 		controllerName = new String(libraryName);
-		projectPath = new String("c:/projects/test-project");
+		projectPath = new String("c:\\projects\\test-project");
 		models = new ModelListType();
 	}
 	
