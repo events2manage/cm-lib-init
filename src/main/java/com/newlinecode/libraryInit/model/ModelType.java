@@ -10,6 +10,7 @@ public class ModelType implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private String modelName;
+	private String modelDbName;
 	private String modelKey;
 	private boolean forceLeftJoin;
 	private List<String> tableRelations;
@@ -60,6 +61,7 @@ public class ModelType implements Serializable {
 	public void print() {
 		System.out.println("\t---------------MODEL---------------");
 		System.out.println("\tModel: " + this.modelName);
+		System.out.println("\tModel DB Name: " + this.modelDbName);
 		System.out.println("\tKey: " + this.modelKey);
 		System.out.println("\tForceLeftJoin: " + this.forceLeftJoin);
 		System.out.println("\t\t---------RELATIONS---------");
@@ -69,5 +71,19 @@ public class ModelType implements Serializable {
 		}
 		
 		System.out.println("\t---------------END MODEL---------------");
+	}
+
+	/**
+	 * @return the modelDbName
+	 */
+	public String getModelDbName() {
+		return modelDbName;
+	}
+
+	/**
+	 * @param modelDbName the modelDbName to set
+	 */
+	public void setModelDbName(String modelDbName) {
+		this.modelDbName = modelDbName;
 	}
 }

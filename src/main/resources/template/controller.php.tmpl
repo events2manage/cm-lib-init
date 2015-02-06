@@ -14,7 +14,7 @@
  * @extends Core_Controller
  * @todo 
  */
-class #{Path}_#{LibName}_Controller extends #{Path}_#{LibName}_Rules_Rules
+class #{LibPath}_Controller extends #{LibPath}_Rules_Rules
 {
     /**
 	 * @property stdObject $instance the instance of the current class
@@ -87,13 +87,13 @@ class #{Path}_#{LibName}_Controller extends #{Path}_#{LibName}_Rules_Rules
     	if(is_object($args) && !Util_VarUtil::isEmpty(@$args->id))
     	{
     		#todo:
-	    	#$mo = new #{Path}_#{LibName}_Model_#{ModelName}();
+	    	#$mo = new #{LibPath}_Model_#{ModelName}();
 	    	#$mo->load($args->id);
     	}
     	else
     	{
     		#todo:
-	    	#$mo = new #{Path}_#{LibName}_Collection_#{ModelName}();
+	    	#$mo = new #{LibPath}_Collection_#{ModelName}();
 	    	#$mo->load();
     	}
     	
@@ -114,7 +114,7 @@ class #{Path}_#{LibName}_Controller extends #{Path}_#{LibName}_Rules_Rules
     	if($args->id != null)
     	{
     		#todo:
-	    	#$mo = new #{Path}_#{LibName}_Model_#{ModelName}();
+	    	#$mo = new #{LibPath}_Model_#{ModelName}();
 	    	#$mo->delete($args->id);
 	    }
     	return false;

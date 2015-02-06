@@ -54,16 +54,18 @@ public class AppTest
 		
 		r.getModels().getModel().add(m);
 		m.setForceLeftJoin(true);
-		m.setModelKey("testModelKey");
-		m.setModelName("testModel");
+		m.setModelKey("model_db_key");
+		m.setModelName("TestModel");
+		m.setModelDbName("model_db_name");
 		m.getTableRelations().add("user");
 		
 		m = new ModelType();
 		
 		r.getModels().getModel().add(m);
 		m.setForceLeftJoin(true);
-		m.setModelKey("testModelKey");
+		m.setModelKey("model_db_key1");
 		m.setModelName("TestModel1");
+		m.setModelDbName("model_db_name");
 		m.getTableRelations().add("user");
 		
 		JAXBContext context = JAXBContext.newInstance(RootType.class);
@@ -77,6 +79,18 @@ public class AppTest
 		out.close();
 		
 		new TemplateParser().parse("c:\\tmp\\xmlIn.xml");
+    }
+    
+    /**
+     * Rigourous Test :-)
+     * @throws JAXBException 
+     * @throws FileNotFoundException 
+     */
+    public void testFromFileTemplate() throws JAXBException
+    {
+        assertTrue( true );
+		
+		new TemplateParser().parse("c:\\tmp\\testUserIn.xml");
     }
     
     public static String asString(JAXBContext pContext, Object pObject) throws JAXBException {

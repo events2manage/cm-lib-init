@@ -7,10 +7,13 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.newlinecode.libraryInit.model.ModelType;
 import com.newlinecode.libraryInit.model.RootType;
@@ -20,14 +23,14 @@ public class TemplateParser implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String LIBRARY_TEMPLATE_LOCATION = "template/";
-	private static final String LIBRARY_NAME_TOKEN = "#{LibName}";
-	private static final String LIBRARY_PATH_TOKEN = "#{Path}";
+	private static final String LIBRARY_PATH_TOKEN = "#{LibPath}";
 	private static final String LIBRARY_MODEL_TOKEN = "#{ModelName}";
 	private static final String LIBRARY_MODEL_TBL_TOKEN = "#{ModelTbl}";
 	private static final String LIBRARY_MODEL_KEY_TOKEN = "#{ModelKey}";
 	
 	private RootType model;
-	private String libraryPath;
+	private String libraryPath = "";
+	private String libraryPrefix = "";
 	
 	/**
 	 * Parses all the existent templates
@@ -64,8 +67,8 @@ public class TemplateParser implements Serializable {
 			path.append("\\");
 		}
 		
-		if (!path.toString().contains("library")) {
-			path.append("library\\");
+		if (!path.toString().contains("libraries")) {
+			path.append("libraries\\");
 		}
 		
 		return path;
@@ -156,12 +159,11 @@ public class TemplateParser implements Serializable {
 		}
 		
 		String content = readFile(file);
-		content = content.replace(LIBRARY_NAME_TOKEN, model.getControllerName());
-		content = content.replace(LIBRARY_PATH_TOKEN, libraryPath);
+		content = content.replace(LIBRARY_PATH_TOKEN, StringUtils.replace(libraryPrefix, "\\", "_") + StringUtils.replace(libraryPath, "\\", "_"));
 		if (modelType.length > 0) {
 			// TODO: change into loop
 			content = content.replace(LIBRARY_MODEL_KEY_TOKEN, modelType[0].getModelKey());
-			content = content.replace(LIBRARY_MODEL_TBL_TOKEN, modelType[0].getModelName());
+			content = content.replace(LIBRARY_MODEL_TBL_TOKEN, modelType[0].getModelDbName());
 			// TODO: First Upper
 			content = content.replace(LIBRARY_MODEL_TOKEN, modelType[0].getModelName().replace("_", "").toLowerCase());
 		}
@@ -174,13 +176,13 @@ public class TemplateParser implements Serializable {
 		
 		switch (templ) {
 			case RULES: case HELPER: case CONTROLLER: default:
-				outputFile = new File(model.getProjectPath() + "/" + libraryPath + "/" + templ.getName().replace(".tmpl", ""));
+				outputFile = new File(model.getProjectPath() + libraryPath + "\\" + templ.getName().replace(".tmpl", ""));
 				break;
 			case MODEL:
-				outputFile = new File(model.getProjectPath() + "/" + libraryPath + "/model/" + modelType[0].getModelName() + ".php");
+				outputFile = new File(model.getProjectPath() + libraryPath + "\\model\\" + modelType[0].getModelName() + ".php");
 				break;
 			case COLLECTION:
-				outputFile = new File(model.getProjectPath() + "/" + libraryPath + "/collection/" + modelType[0].getModelName() + ".php");
+				outputFile = new File(model.getProjectPath() + libraryPath + "\\collection\\" + modelType[0].getModelName() + ".php");
 				break;
 		}
 		
@@ -209,8 +211,26 @@ public class TemplateParser implements Serializable {
 	    }
 	}
 	
-	private void determineLibraryPath() {
-		// TODO:
+	private void determineLibraryPath() {		
+		if(model.getProjectPath().contains("libraries")) {
+			String[]pathParts = model.getProjectPath().split("(\\\\|/)");
+			int libIndex = 0;
+			
+			for (String part : pathParts) {
+				libIndex++;
+				if ("libraries".equals(part)) {
+					break;
+				}
+			}
+			
+			if( libIndex > 0) {
+				libraryPrefix = StringUtils.join(Arrays.copyOfRange(pathParts.clone(), libIndex++, pathParts.length), "\\");
+				if(!"".equals(libraryPrefix)) {
+					libraryPrefix += "_";
+				}
+			}
+		}
+		
 		libraryPath = model.getControllerName();
 	}
 }
