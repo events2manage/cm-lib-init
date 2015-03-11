@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rootType>
-	<controllerName>testLibrary</controllerName>
+	<controllerName>ReportObject</controllerName>
 	<hasHelper>true</hasHelper>
 	<hasRules>true</hasRules>
 	<models>
 		<model>
 			<forceLeftJoin>true</forceLeftJoin>
-			<modelKey>testModelKey</modelKey>
-			<modelName>testModel</modelName>
-			<tableRelations>user</tableRelations>
-		</model>
-		<model>
-			<forceLeftJoin>true</forceLeftJoin>
-			<modelKey>testModelKey</modelKey>
-			<modelName>testModel</modelName>
-			<tableRelations>user</tableRelations>
+			<modelKey>object_id</modelKey>
+			<modelName>ObjectDefModel</modelName>
+			<tableRelations>object_def</tableRelations>
 		</model>
 	</models>
 	<projectPath>c:/projects/test-project</projectPath>
