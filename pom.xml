@@ -4,7 +4,7 @@
 	<groupId>com.newlinecode.libraryInit</groupId>
 	<artifactId>library-initializer</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.Final</version>
 	<name>library-initializer</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
