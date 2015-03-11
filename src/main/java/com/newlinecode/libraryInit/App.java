@@ -16,6 +16,7 @@ public class App {
 			throw new InvalidParameterException("Missing parameter 0 with the path to the XML model {String}.");
 		}
 		
+		System.out.println(args[0]);
 		new TemplateParser().parse(args[0]);
 	}
 }

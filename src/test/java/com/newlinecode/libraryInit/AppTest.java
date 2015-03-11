@@ -49,7 +49,7 @@ public class AppTest
         assertTrue( true );
         
         // parse document
-		RootType r = new RootType("TestLibrary", "c:\\tmp\\test-project");
+		/*RootType r = new RootType("TestLibrary", "c:\\tmp\\test-project");
 		ModelType m = new ModelType();
 		
 		r.getModels().getModel().add(m);
@@ -78,7 +78,7 @@ public class AppTest
 		out.println(xml);
 		out.close();
 		
-		new TemplateParser().parse("c:\\tmp\\xmlIn.xml");
+		new TemplateParser().parse("c:\\tmp\\xmlIn.xml");*/
     }
     
     /**
@@ -90,7 +90,7 @@ public class AppTest
     {
         assertTrue( true );
 		
-		new TemplateParser().parse("c:\\tmp\\testUserIn.xml");
+		//new TemplateParser().parse("c:\\tmp\\testUserIn.xml");
     }
     
     public static String asString(JAXBContext pContext, Object pObject) throws JAXBException {
