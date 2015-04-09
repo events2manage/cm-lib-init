@@ -95,7 +95,7 @@ public class TemplateParser implements Serializable {
 	}
 	
 	private static boolean createDir(String dir) {
-		File files = new File(dir);
+		File files = new File(dir.toLowerCase());
 		if (!files.exists()) {
 			if (files.mkdirs()) {
 				System.out.println("Multiple directories are created!");
@@ -179,10 +179,10 @@ public class TemplateParser implements Serializable {
 				outputFile = new File(model.getProjectPath() + libraryPath + "\\" + templ.getName().replace(".tmpl", ""));
 				break;
 			case MODEL:
-				outputFile = new File(model.getProjectPath() + libraryPath + "\\model\\" + modelType[0].getModelName() + ".php");
+				outputFile = new File(model.getProjectPath() + libraryPath + "\\model\\" + modelType[0].getModelName().toLowerCase() + ".php");
 				break;
 			case COLLECTION:
-				outputFile = new File(model.getProjectPath() + libraryPath + "\\collection\\" + modelType[0].getModelName() + ".php");
+				outputFile = new File(model.getProjectPath() + libraryPath + "\\collection\\" + modelType[0].getModelName().toLowerCase() + ".php");
 				break;
 		}
 		
