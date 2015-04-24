@@ -18,6 +18,7 @@ import org.apache.commons.lang.StringUtils;
 import com.newlinecode.libraryInit.model.ModelType;
 import com.newlinecode.libraryInit.model.RootType;
 import com.newlinecode.libraryInit.model.TemplateType;
+import com.newlinecode.libraryInit.parser.ModelsParser;
 
 public class TemplateParser implements Serializable {
 	
@@ -114,23 +115,18 @@ public class TemplateParser implements Serializable {
 		
 		fillTemplate(TemplateType.CONTROLLER);
 		
-		// create helper dir
+		// create helper from template
 		if (model.isHasHelper()) {
 			fillTemplate(TemplateType.HELPER);
 		}
 
-		// create helper dir
+		// create rules from template
 		if (model.isHasRules()) {
 			fillTemplate(TemplateType.RULES);
 		}
 
-		// create helper dir
-		if (model.getModels().getModel().size() > 0) {
-			for(ModelType m: model.getModels().getModel()) {
-				fillTemplate(TemplateType.MODEL, m);
-				fillTemplate(TemplateType.COLLECTION, m);
-			}
-		}
+		// create models
+		new ModelsParser(model.getModels()).fillModels();
 		
 		return ok != 0;
 	}
