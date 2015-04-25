@@ -69,8 +69,9 @@ class #{LibPath}_Controller extends #{LibPath}_Rules_Rules
 	 */
     public function putAction($args)
     {
-    	$r = new stdObject();
-    	return $r;
+    	$r = new #{LibPath}_Model_#{ModelName}();
+    	$r->bind($args);
+    	return $r->commit();
     }
     
     /**
@@ -86,15 +87,13 @@ class #{LibPath}_Controller extends #{LibPath}_Rules_Rules
     {
     	if(is_object($args) && !Util_VarUtil::isEmpty(@$args->id))
     	{
-    		#todo:
-	    	#$mo = new #{LibPath}_Model_#{ModelName}();
-	    	#$mo->load($args->id);
+	    	$mo = new #{LibPath}_Model_#{ModelName}();
+	    	$mo->load($args->id);
     	}
     	else
     	{
-    		#todo:
-	    	#$mo = new #{LibPath}_Collection_#{ModelName}();
-	    	#$mo->load();
+	    	$mo = new #{LibPath}_Collection_#{ModelName}();
+	    	$mo->load();
     	}
     	
     	return $mo->properties;
@@ -113,9 +112,8 @@ class #{LibPath}_Controller extends #{LibPath}_Rules_Rules
     {
     	if($args->id != null)
     	{
-    		#todo:
-	    	#$mo = new #{LibPath}_Model_#{ModelName}();
-	    	#$mo->delete($args->id);
+	    	$mo = new #{LibPath}_Model_#{ModelName}();
+	    	$mo->delete($args->id);
 	    }
     	return false;
     }
