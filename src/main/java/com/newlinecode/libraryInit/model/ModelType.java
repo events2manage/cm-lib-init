@@ -14,6 +14,7 @@ public class ModelType implements Serializable {
 	private String modelKey;
 	private boolean forceLeftJoin;
 	private List<String> tableRelations;
+	private List<FieldType> fields;
 
 	public ModelType() {
 		modelName = new String();
@@ -85,5 +86,19 @@ public class ModelType implements Serializable {
 	 */
 	public void setModelDbName(String modelDbName) {
 		this.modelDbName = modelDbName;
+	}
+
+	/**
+	 * @return the fields
+	 */
+	public List<FieldType> getFields() {
+		return fields;
+	}
+
+	/**
+	 * @param fields the fields to set
+	 */
+	public void setFields(List<FieldType> fields) {
+		this.fields = fields;
 	}
 }
