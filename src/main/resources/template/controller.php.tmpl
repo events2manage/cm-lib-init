@@ -85,7 +85,7 @@ class #{LibPath}_Controller extends #{LibPath}_Rules_Rules
 	 */
     public function getAction($args)
     {
-    	if(is_object($args) && !Util_VarUtil::isEmpty(@$args->id))
+    	if(is_object($args) && Util_VarUtil::hasValue(@$args->id))
     	{
 	    	$mo = new #{LibPath}_Model_#{ModelName}();
 	    	$mo->load($args->id);
@@ -110,7 +110,7 @@ class #{LibPath}_Controller extends #{LibPath}_Rules_Rules
 	 */
     public function deleteAction($args)
     {
-    	if($args->id != null)
+    	if(Util_VarUtil::hasValue(@$args->id))
     	{
 	    	$mo = new #{LibPath}_Model_#{ModelName}();
 	    	$mo->delete($args->id);
