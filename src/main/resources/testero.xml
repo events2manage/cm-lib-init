@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rootType>
+	<controllerName>Testero</controllerName>
+	<hasHelper>true</hasHelper>
+	<hasRules>true</hasRules>
+	<models>
+		<model>
+			<forceLeftJoin>false</forceLeftJoin>
+			<modelDbName>testero</modelDbName>
+			<modelKey>testero_id</modelKey>
+			<modelName>testero</modelName>
+		</model>
+	</models>
+	<projectPath>libraries/</projectPath>
+</rootType>

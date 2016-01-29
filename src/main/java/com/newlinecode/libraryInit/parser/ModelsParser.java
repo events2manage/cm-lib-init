@@ -43,8 +43,8 @@ public class ModelsParser {
 		
 		String basePath = model.getProjectPath() + context.getLibraryPath();
 		if (modelList.size() > 0) {
-			TemplateParser.createDir(basePath + "\\" + "model\\");
-			TemplateParser.createDir(basePath + "\\" + "collection\\");
+			TemplateParser.createDir(basePath + "/" + "model/");
+			TemplateParser.createDir(basePath + "/" + "collection/");
 		}
 		
 		// from the second model ahead create a sublibrary structure

@@ -69,30 +69,30 @@ public class TemplateParser implements Serializable {
 	}
 
 	public static StringBuilder normalizePath(StringBuilder path) {
-		if (!path.substring(path.length() - 2, path.length()).equals("\\")) {
-			path.append("\\");
+		if (!path.substring(path.length() - 2, path.length()).equals("/")) {
+			path.append("/");
 		}
 
 		if (!path.toString().contains("libraries")) {
-			path.append("libraries\\");
+			path.append("libraries/");
 		}
 
 		return path;
 	}
 
 	private void buildDirectoryStructure() {
-		createDir(getModel().getProjectPath() + getLibraryPath() + "\\");
+		createDir(getModel().getProjectPath() + getLibraryPath() + "/");
 
 		// create helper dir
 		if (getModel().isHasHelper()) {
-			createDir(getModel().getProjectPath() + getLibraryPath() + "\\"
-					+ "helper\\");
+			createDir(getModel().getProjectPath() + getLibraryPath() + "/"
+					+ "helper/");
 		}
 
 		// create helper dir
 		if (getModel().isHasRules()) {
-			createDir(getModel().getProjectPath() + getLibraryPath() + "\\"
-					+ "rules\\");
+			createDir(getModel().getProjectPath() + getLibraryPath() + "/"
+					+ "rules/");
 		}
 	}
 
@@ -176,8 +176,8 @@ public class TemplateParser implements Serializable {
 
 		String content = readFile(file);
 		content = content.replace(LIBRARY_PATH_TOKEN,
-				StringUtils.replace(getLibraryPrefix(), "\\", "_")
-						+ StringUtils.replace(getLibraryPath(), "\\", "_"));
+				StringUtils.replace(getLibraryPrefix(), "/", "_")
+						+ StringUtils.replace(getLibraryPath(), "/", "_"));
 		if (modelType.length > 0) {
 			// TODO: change into loop
 			content = content.replace(LIBRARY_MODEL_KEY_TOKEN,
@@ -202,17 +202,17 @@ public class TemplateParser implements Serializable {
 		case CONTROLLER:
 		default:
 			outputFile = new File(getModel().getProjectPath()
-					+ getLibraryPath() + "\\"
+					+ getLibraryPath() + "/"
 					+ templ.getName().replace(".tmpl", ""));
 			break;
 		case MODEL:
 			outputFile = new File(getModel().getProjectPath()
-					+ getLibraryPath() + "\\model\\"
+					+ getLibraryPath() + "/model/"
 					+ modelType[0].getModelName().toLowerCase() + ".php");
 			break;
 		case COLLECTION:
 			outputFile = new File(getModel().getProjectPath()
-					+ getLibraryPath() + "\\collection\\"
+					+ getLibraryPath() + "/collection/"
 					+ modelType[0].getModelName().toLowerCase() + ".php");
 			break;
 		}
@@ -260,7 +260,7 @@ public class TemplateParser implements Serializable {
 
 			if (libIndex > 0) {
 				setLibraryPrefix(StringUtils.join(Arrays.copyOfRange(
-						pathParts.clone(), libIndex++, pathParts.length), "\\"));
+						pathParts.clone(), libIndex++, pathParts.length), "/"));
 				if (!"".equals(getLibraryPrefix())) {
 					setLibraryPrefix(getLibraryPrefix() + "_");
 				}
